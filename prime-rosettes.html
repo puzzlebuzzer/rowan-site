@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Prime Rosettes — cyclic interruption, sampled symmetry</title>
+  <style>
+    :root { --max: 980px; }
+    body {
+      margin: 0;
+      font: 16px/1.55 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      color: #111;
+      background: #fff;
+    }
+    main { max-width: var(--max); margin: 0 auto; padding: 28px 18px 56px; }
+    h1 { font-size: 28px; line-height: 1.2; margin: 0 0 10px; }
+    .meta { color: #555; margin: 0 0 18px; }
+    figure { margin: 18px 0 22px; }
+    img { width: 100%; height: auto; display: block; border-radius: 10px; }
+    .caption { color: #444; font-size: 14px; margin-top: 10px; }
+    details { border: 1px solid #e7e7e7; border-radius: 10px; padding: 12px 14px; margin: 12px 0; }
+    summary { cursor: pointer; font-weight: 600; }
+    .block { margin: 10px 0 0; color: #222; }
+    .footer { margin-top: 26px; color: #666; font-size: 14px; }
+    a { color: inherit; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Prime rosettes</h1>
+    <p class="meta">One rule, different prime-length cutoffs, same alignment.</p>
+
+    <figure>
+      <img src="images/prime-rosettes.jpg" alt="A coloring page of rosettes colored by a prime-length cycling rule." />
+      <div class="caption">
+        Colored by a fixed sequence starting with red at 12 o’clock. Each rosette uses a different prime cycle length.
+      </div>
+    </figure>
+
+    <details open>
+      <summary>Plain language</summary>
+      <div class="block">
+        I’m running a repeating color order around each rosette. The order always starts with red at the top and moves
+        one step at a time around the circle. The twist is that each rosette is only allowed to use a certain number of
+        steps before the sequence “wraps” and starts again at red.
+        <br><br>
+        Each rosette uses a different <em>prime</em> number of steps (2, 3, 5, 7, 11, …). I’m watching how the overall
+        rhythm changes when the “restart point” changes, even though the underlying rule stays the same.
+        <br><br>
+        The larger petals at 12, 2, 4, 6, 8, and 10 o’clock act like a quick readout: they show how the prime-length
+        wrap interacts with the 6-hue rainbow cycle.
+      </div>
+    </details>
+
+    <details>
+      <summary>Systems view</summary>
+      <div class="block">
+        This is a cyclic generator with a fixed phase origin (red at 12 o’clock) and a fixed advancement rule
+        (advance one step per sector). Each rosette applies a different prime cutoff length, creating an interruption
+        seam where the sequence resets.
+        <br><br>
+        A second layer is visible because hues repeat every 6 steps: projecting the long sequence onto the 6-hue
+        “coarse cycle” makes <em>mod&nbsp;6</em>-style interactions legible. Sampling the physically larger petals at
+        six evenly spaced angles makes those interactions easy to compare across different prime cutoffs.
+      </div>
+    </details>
+
+    <details>
+      <summary>Formal view (optional)</summary>
+      <div class="block">
+        Let sectors be indexed by <code>k = 0,1,2,…</code> starting at 12 o’clock, advancing clockwise.
+        For a chosen modulus <code>p</code> (prime), the rosette uses the cycle <code>k mod p</code> to select the
+        <code>k</code>-th color in an ordered list, with a fixed phase origin at <code>k=0</code>.
+        <br><br>
+        Hue classes correspond to the projection <code>k mod 6</code> (six rainbow hues). The “large petal”
+        readout samples six fixed angular positions, i.e. a fixed subset of indices, producing a compact signature of
+        how the mod-<code>p</code> wrap interacts with the mod-6 projection.
+      </div>
+    </details>
+
+    <p class="footer">
+      © Rowan. This page documents a coloring-based modular-structure experiment.
+    </p>
+  </main>
+</body>
+</html>
